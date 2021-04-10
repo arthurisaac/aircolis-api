@@ -34,7 +34,7 @@ router.post('/notification', function(req, res) {
       console.log('Error sending message:', error);
     });
   } else {
-    res.end('Aucun token');
+    res.json({"error": "Aucun token"});
   }
   
 });

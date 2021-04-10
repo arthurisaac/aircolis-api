@@ -27,10 +27,11 @@ router.post('/notification', function(req, res) {
     .then((response) => {
       // Response is a message ID string.
       console.log('Successfully sent message:', response);
-      res.render('index', { title: 'Successfully sent message:' + response });
+      res.json({"succes": "Successfully sent: " + response});
+      //res.render('index', { title: 'Successfully sent message:' + response });
     })
     .catch((error) => {
-      res.end(error);
+      res.end({"error": error});
       console.log('Error sending message:', error);
     });
   } else {

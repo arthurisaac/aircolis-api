@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var admin = require("firebase-admin");
+const express = require('express');
+const router = express.Router();
+const admin = require("firebase-admin");
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -14,8 +14,8 @@ router.post('/notification', function(req, res) {
   
   //console.log(req.params.token);
   if (token) {
-    var topic = 'general';
-    var message = {
+    //var topic = 'general';
+    const message = {
       notification: {
         title: title ?? 'Aircolis',
         body: body ?? 'Bienvenue sur aircolis',

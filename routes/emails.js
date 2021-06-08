@@ -3,11 +3,11 @@ const router = express.Router();
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 require('dotenv').config();
 
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
     res.send('Email route');
 });
 
-router.post('/welcome', function(req, res) {
+router.post('/welcome', function (req, res) {
 
     const email = req.body.email;
 
@@ -37,15 +37,15 @@ router.post('/welcome', function(req, res) {
             surname: 'Doe'
         },
         headers: {
-            "Content-Type":"text/html",
-            "charset":"utf-8"
+            "Content-Type": "text/html",
+            "charset": "utf-8"
         }
     };
 
-    apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+    apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
         console.log('API called successfully. Returned data: ' + data);
         res.end(JSON.stringify(data));
-    }, function(error) {
+    }, function (error) {
         console.error(error);
         res.end(JSON.stringify(error));
     });
@@ -53,7 +53,7 @@ router.post('/welcome', function(req, res) {
 
 });
 
-router.post('/request', function(req, res) {
+router.post('/request', function (req, res) {
 
     const email = req.body.email;
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -78,15 +78,15 @@ router.post('/request', function(req, res) {
         }],
         templateId: 2,
         headers: {
-            "Content-Type":"text/html",
-            "charset":"utf-8"
+            "Content-Type": "text/html",
+            "charset": "utf-8"
         }
     };
 
-    apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+    apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
         console.log('API called successfully. Returned data: ' + JSON.stringify(data));
         res.json(data);
-    }, function(error) {
+    }, function (error) {
         console.error(error);
         res.end(JSON.stringify(error));
     });
@@ -94,7 +94,7 @@ router.post('/request', function(req, res) {
 
 });
 
-router.post('/accepted', function(req, res) {
+router.post('/accepted', function (req, res) {
 
     const email = req.body.email;
 
@@ -120,15 +120,15 @@ router.post('/accepted', function(req, res) {
         }],
         templateId: 3,
         headers: {
-            "Content-Type":"text/html",
-            "charset":"utf-8"
+            "Content-Type": "text/html",
+            "charset": "utf-8"
         }
     };
 
-    apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
+    apiInstance.sendTransacEmail(sendSmtpEmail).then(function (data) {
         console.log('API called successfully. Returned data: ' + data);
         res.end(JSON.stringify(data));
-    }, function(error) {
+    }, function (error) {
         console.error(error);
         res.end(JSON.stringify(error));
     });

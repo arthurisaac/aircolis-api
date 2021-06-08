@@ -26,6 +26,7 @@ router.get('/', function (req, res) {
 router.post('/make', function (req, res) {
     let idempotencyKey = v4();
     const amount = req.body.amount;
+    const currency = req.body.currency;
     const sourceId = req.body.sourceId;
     try {
         client.paymentsApi.createPayment({
@@ -33,7 +34,7 @@ router.post('/make', function (req, res) {
             idempotencyKey: idempotencyKey,
             amountMoney: {
                 amount: amount,
-                currency: 'USD'
+                currency: currency
             }
         }).then((resultat) => {
             console.log(resultat);

@@ -4,7 +4,7 @@ const {Client, Environment} = require('square');
 const {v4} = require('uuid');
 require('dotenv').config();
 const braintree = require('braintree');
-const stripe = require('stripe')('sk_test_51J5X6BFq74Le5hMXw0fnHveTAOKYr5tcAilfUCwa20c32ZCNXDdgB3cA0mYoTEgdxgrol8r5Jjk4kEH0HC3SpCS900SpNi4018');
+const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS');
 
 
 const client = new Client({
@@ -79,13 +79,14 @@ router.post('/braintree', function (req, res) {
 });
 
 router.post('/stripe',  async (req, res) => {
+    console.log("paiement de " + parseFloat(req.body.amount) + " req.body.currency");
     const amount = parseFloat(req.body.amount);
     const paymentMethod = req.body.payment_method;
     const currency = req.body.currency;
     const stripeVendorAccount = 'acct_1032D82eZvKYlo2C';
 
     stripe.paymentIntents.create({
-        amount: amount,
+        amount: amount * 100,
         currency: currency,
         //application_fee_amount: 1,
         payment_method: paymentMethod,

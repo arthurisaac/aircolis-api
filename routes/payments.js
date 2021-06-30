@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {Client, Environment} = require('square');
-const {v4} = require('uuid');
+const stripe = require('stripe')('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');
 require('dotenv').config();
-const braintree = require('braintree');
-const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS');
+//const {Client, Environment} = require('square');
+//const {v4} = require('uuid');
+//const braintree = require('braintree');
+//const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS');
 
 
-const client = new Client({
+/*const client = new Client({
     environment: Environment.Sandbox,
     accessToken: process.env.SQUARE_ACCESS_TOKEN,
 });
@@ -17,14 +18,14 @@ const gateway = new braintree.BraintreeGateway({
     merchantId: 'bn2n77yc5n3p8zr4',
     publicKey: '8gppvwzh6cb7z9r7',
     privateKey: 'a9c153dcd132980f34431c80bb122533'
-});
+});*/
 
 
 router.get('/', function (req, res) {
     res.send('Auth');
 });
 
-router.post('/make', function (req, res) {
+/*router.post('/make', function (req, res) {
     let idempotencyKey = v4();
     const amount = req.body.amount;
     const currency = req.body.currency;
@@ -76,7 +77,7 @@ router.post('/braintree', function (req, res) {
         }
     })
 
-});
+});*/
 
 router.post('/stripe',  async (req, res) => {
     console.log("paiement de " + parseFloat(req.body.amount) + " req.body.currency");

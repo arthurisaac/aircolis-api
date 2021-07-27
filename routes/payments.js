@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const stripe = require('stripe')('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');
+//const stripe = require('stripe')('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');
 require('dotenv').config();
 //const {Client, Environment} = require('square');
 //const {v4} = require('uuid');
 //const braintree = require('braintree');
-//const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS');
+//const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS'); //test hakeem
+const stripe = require('stripe')('sk_test_51J5X6BFq74Le5hMXw0fnHveTAOKYr5tcAilfUCwa20c32ZCNXDdgB3cA0mYoTEgdxgrol8r5Jjk4kEH0HC3SpCS900SpNi4018'); // test arthur
 
 
 /*const client = new Client({

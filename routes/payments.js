@@ -6,7 +6,9 @@ require('dotenv').config();
 //const {v4} = require('uuid');
 //const braintree = require('braintree');
 //const stripe = require('stripe')('sk_test_51J5XvyDF00kloegatAd9Y0S9IzI5nzwpXGIiytbCRSvXH3m0x9iMMnRGFyIocvUie1I6HRIki8uVkjnxAQnO5hw000V8hALvfS'); //test hakeem
-const stripe = require('stripe')('sk_test_51J5X6BFq74Le5hMXw0fnHveTAOKYr5tcAilfUCwa20c32ZCNXDdgB3cA0mYoTEgdxgrol8r5Jjk4kEH0HC3SpCS900SpNi4018'); // test arthur
+const stripe = require('stripe')(process.env.STRIPE_KEY, {
+    apiVersion: '2017-06-05',
+});
 
 
 /*const client = new Client({
@@ -96,6 +98,7 @@ router.post('/stripe',  async (req, res) => {
         confirm: true,
         description: req.query.description
     }, (err, paymentIntent) => {
+        if (err) console.log(err);
         res.json({
             paymentIntent: paymentIntent,
             stripeVendorAccount: stripeVendorAccount

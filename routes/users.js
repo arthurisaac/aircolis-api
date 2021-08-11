@@ -9,7 +9,9 @@ router.get('/', async (req, res) => {
     const users = [];
     const snapshot = await db.collection('users').get();
     snapshot.forEach((doc) => {
-        users.push(doc.data());
+        const lastSignIn = doc.get("lastSignInTime").toDate();
+        const data = { ...doc.data(), lastSignIn};
+        users.push(data);
     });
     res.json(users);
 });

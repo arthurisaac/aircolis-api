@@ -10,6 +10,7 @@ const emailRouter = require('./routes/emails');
 const paymentsRouter = require('./routes/payments');
 const postsRouter = require('./routes/posts');
 const activationRouter = require('./routes/activation');
+const alertesRouter = require('./routes/alertes');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/email', emailRouter);
 app.use('/payments', paymentsRouter);
 app.use('/posts', postsRouter);
 app.use('/activation', activationRouter);
+app.use('/alertes', alertesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
     const db = admin.firestore();
     const departEncoded = req.body.depart;
     const arriveeEncoded = req.body.arrivee;
+    const postID = req.body.postID;
 
     const departDecoded = JSON.parse(departEncoded);
     const arriveeDecoded = JSON.parse(arriveeEncoded);
@@ -42,12 +43,32 @@ router.post('/', async (req, res) => {
                 title: 'Aircolis',
                 body: 'Un voyage correspond à votre alerte',
             },
-            token: token
+            token: token,
+            data: {
+                "postID": postID
+            }
         };
         admin.messaging().send(message);
     })));
 
     res.end("save");
+});
+
+router.post('/notif', async (req, res) => {
+
+    const token = "dJ1YOuJKNE5sp09riDC9M_:APA91bErlZhoYrhgQz2JnfNKW2BzGiojcc7VqtrvTUs9UQbCr0gcVIN6mcDdZG6l2mSXxTgOxWrc7h2A1WoCdJHrw-iheEFl94YPfe-VgpB1dlNurdfu9XrZsp7RkFZ-oIPmz6Pj2aNy"; //req.body.token;
+    const message = {
+        notification: {
+            title: 'Aircolis',
+            body: 'Un voyage correspond à votre alerte',
+        },
+        token: token,
+        data: {
+            "postID": "fwRDktS5GACTpyeD2hZs",
+        }
+    };
+    admin.messaging().send(message);
+    res.end('Good');
 });
 
 module.exports = router;
